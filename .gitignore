@@ -1,1 +1,6 @@
+# basic
 node_modules
+package-lock.json
+
+# bulid
+bin
