@@ -5,6 +5,7 @@ import { Command } from "commander";
 import inquirer from "inquirer";
 import Pack from "../package.json";
 import { _blue, _green, _red, loading } from "@utils";
+import Commands from "@commands";
 
 const program = new Command();
 
@@ -92,32 +93,42 @@ program
 //     });
 // });
 
-program.command("loading").action(() => {
-  loading.start({
-    color: "red",
-    text: "begin",
-  });
-  setTimeout(() => {
-    loading.warn("警告");
-    setTimeout(() => {
-      loading.info("提示");
-      setTimeout(() => {
-        loading.stop();
-        setTimeout(() => {
-          loading.start("第二次");
-          setTimeout(() => {
-            loading.stop();
-          }, 2000);
-        }, 2000);
-      }, 2000);
-    }, 2000);
-  }, 2000);
-});
+// program.command("loading").action(() => {
+//   loading.start({
+//     color: "red",
+//     text: "begin",
+//   });
+//   setTimeout(() => {
+//     loading.warn("警告");
+//     setTimeout(() => {
+//       loading.info("提示");
+//       setTimeout(() => {
+//         loading.stop();
+//         setTimeout(() => {
+//           loading.start("第二次");
+//           setTimeout(() => {
+//             loading.stop();
+//           }, 2000);
+//         }, 2000);
+//       }, 2000);
+//     }, 2000);
+//   }, 2000);
+// });
 
-program.command("chalk").action(() => {
-  console.log(_blue("蓝色"));
-  console.log(_red("红色"));
-  console.log(_green("绿色"));
+// program.command("chalk").action(() => {
+//   console.log(_blue("蓝色"));
+//   console.log(_red("红色"));
+//   console.log(_green("绿色"));
+// });
+
+Object.keys(Commands).forEach((command) => {
+  const current = program.command(command);
+  if (Commands[command].option && Commands[command].option.length > 0) {
+    Commands[command].option.forEach((item) => {
+      current.option(item.cmd, item.msg || "");
+    });
+  }
+  current.action(Commands[command].action);
 });
 
 program.parse(process.argv);
