@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bulid": "rm -rf ./bin & tsc"
+    "bulid": "rm -rf ./bin && tsc && tsc-alias"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +19,8 @@
     "inquirer": "^10.0.1",
     "loading-cli": "^1.1.2",
     "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "tsc-alias": "^1.8.10"
   }
 }
