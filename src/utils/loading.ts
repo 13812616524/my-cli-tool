@@ -11,8 +11,29 @@ class Load {
    * 开始Loading状态 第二次开始传string类型
    */
   start(options: Options | string) {
-    !this.load && (this.load = loading(options).start());
-    this.load && this.load.start(options as string);
+    if (!this.load) {
+      typeof options === "object" &&
+        !options.frames &&
+        (options.frames = [
+          ".",
+          ".",
+          "o",
+          "o",
+          "0",
+          "0",
+          "。",
+          "。",
+          "0",
+          "0",
+          "o",
+          "o",
+          ".",
+          ".",
+        ]);
+      this.load = loading(options).start();
+    } else {
+      this.load.start(options as string);
+    }
   }
 
   /**
@@ -20,6 +41,10 @@ class Load {
    */
   stop() {
     this.load && this.load.stop();
+  }
+
+  succeed(text = "success") {
+    this.load && this.load.succeed(text);
   }
 
   warn(text: string) {
