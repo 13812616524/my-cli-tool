@@ -1,5 +1,5 @@
 {
-  "name": "my-node-project",
+  "name": "@manyan.zhang/cli-tool",
   "version": "1.0.0",
   "description": "项目初始化脚手架",
   "main": "index.js",
