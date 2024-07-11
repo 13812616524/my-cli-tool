@@ -11,7 +11,7 @@
     "bulid": "rm -rf ./bin && tsc && tsc-alias"
   },
   "keywords": [],
-  "author": "",
+  "author": "manyan.zhang",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.0.0",
